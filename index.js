@@ -8,6 +8,7 @@ const port = process.env.PORT || 5001;
 
 // files
 const programRoute = require("./src/routes/programRoute");
+const exerciseRoute = require("./src/routes/exeriseRoute");
 
 // file call
 const app = express();
@@ -31,6 +32,7 @@ mongoose
 
 // routing
 app.use("/api/program", programRoute);
+app.use("/api/exercise", exerciseRoute);
 
 // cors error resolve
 app.all("*", function (req, res, next) {
