@@ -8,7 +8,7 @@ const {
 const router = express.Router();
 
 router.post("/create", CreateProgram);
-router.post("/Edit", EditProgram);
-router.post("/Delete", DeleteProgram);
+router.put("/edit/:programId", EditProgram);
+router.delete("/delete/:programId", DeleteProgram);
 
 module.exports = router;

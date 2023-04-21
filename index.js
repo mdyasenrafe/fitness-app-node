@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const port = process.env.PORT || 5001;
 
+// files
+const programRoute = require("./src/routes/programRoute");
+
 // file call
 const app = express();
 
@@ -27,6 +30,7 @@ mongoose
   .catch((err) => console.log(err.message));
 
 // routing
+app.use("/api/program", programRoute);
 
 // cors error resolve
 app.all("*", function (req, res, next) {
@@ -39,7 +43,7 @@ app.all("*", function (req, res, next) {
 
 // first route
 app.get("/", (req, res) => {
-  res.send("This is Project Management System");
+  res.send("fitness app");
 });
 
 // Undefined Route Implement

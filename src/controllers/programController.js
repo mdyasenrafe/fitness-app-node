@@ -2,8 +2,8 @@ const ProgramModel = require("../models/programModel");
 
 exports.CreateProgram = async (req, res) => {
   try {
-    const { name, exercises } = req.body;
-    const program = new ProgramModel({ name, exercises });
+    const { programName, exercises, programId } = req.body;
+    const program = new ProgramModel({ programId, programName, exercises });
     await program.save();
     res.status(200).send({
       error: false,
@@ -20,8 +20,8 @@ exports.CreateProgram = async (req, res) => {
 
 exports.EditProgram = async (req, res) => {
   try {
-    const { id } = req.params;
-    const program = await ProgramModel.findByIdAndUpdate(id, req.body, {
+    const { programId } = req.params;
+    const program = await ProgramModel.findOneAndUpdate(programId, req.body, {
       new: true,
     });
     if (!program) {
@@ -46,8 +46,8 @@ exports.EditProgram = async (req, res) => {
 
 exports.DeleteProgram = async (req, res) => {
   try {
-    const { id } = req.params;
-    const program = await ProgramModel.findByIdAndDelete(id);
+    const { programId } = req.params;
+    const program = await ProgramModel.findOneAndDelete(programId);
     if (!program) {
       res.status(404).send({
         error: true,
